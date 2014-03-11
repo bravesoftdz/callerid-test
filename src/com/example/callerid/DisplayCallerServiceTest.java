@@ -8,8 +8,12 @@ import static org.mockito.Mockito.mock;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
+import android.app.Service;
+import android.content.Context;
 import android.widget.TextView;
 
 @RunWith(RobolectricTestRunner.class)
@@ -23,14 +27,10 @@ public class DisplayCallerServiceTest {
 	public void setUp() throws Exception {
 		service = mock(DisplayCallerService.class);
 		
-//		when(service.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(Robolectric.application.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
-//		when(service.getSystemService(Service.WINDOW_SERVICE)).thenReturn(Robolectric.application.getSystemService(Service.WINDOW_SERVICE));
-//		when(service.getNumber(new Intent())).thenReturn(CALLER_NUMBER);
-//		doCallRealMethod().when(service).onCreate();
-//		doCallRealMethod().when(service).onStartCommand(new Intent(), 0, 0);
-//		
-//		service.onCreate();
-//		service.onStartCommand(new Intent(), 0, 0);
+		Mockito.when(service.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).thenReturn(Robolectric.application.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
+		Mockito.when(service.getSystemService(Service.WINDOW_SERVICE)).thenReturn(Robolectric.application.getSystemService(Service.WINDOW_SERVICE));
+		doCallRealMethod().when(service).onCreate();
+		service.onCreate();
 	}
 	
 	/**
